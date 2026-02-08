@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-    @NotNull
-    private int id;
+    private Long id;
 
     @NotBlank
     @Size(max = 255)
@@ -27,6 +25,5 @@ public class UserDto {
     private String name;
 
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
 }

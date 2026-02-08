@@ -31,6 +31,11 @@ public class Theme {
     @Column(nullable = false)
     private String title;
 
+    @NotBlank
+    @Size(max = 2000)
+    @Column(nullable = false)
+    private String description;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
