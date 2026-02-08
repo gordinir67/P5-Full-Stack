@@ -1,30 +1,31 @@
-package com.openclassrooms.mddapi.dto;
-import com.openclassrooms.mddapi.models.Article;
-import com.openclassrooms.mddapi.models.User;
+package com.openclassrooms.mddapi.dto.article;
+import com.openclassrooms.mddapi.dto.theme.ThemeLightDto;
+import com.openclassrooms.mddapi.dto.user.UserLightDto;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDto {
-    private Long id;
+public class ArticleLightDto {
+    @NotNull
+    private int id;
 
-    @NotBlank
-    @Size(max = 2000)
+    private String title;
+
     private String description;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
-    private List<Article> articles;
+    private UserLightDto user;
 
-    private List<User> users;
+    private ThemeLightDto theme;
 }

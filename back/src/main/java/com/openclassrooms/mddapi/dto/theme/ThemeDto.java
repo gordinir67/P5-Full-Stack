@@ -1,8 +1,8 @@
-package com.openclassrooms.mddapi.dto;
-import com.openclassrooms.mddapi.models.Article;
-import com.openclassrooms.mddapi.models.Subscription;
-import jakarta.persistence.Column;
+package com.openclassrooms.mddapi.dto.theme;
+import com.openclassrooms.mddapi.dto.article.ArticleLightDto;
+import com.openclassrooms.mddapi.dto.subscription.SubscriptionDto;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,18 +15,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ThemeDto {
-    private Long id;
+    @NotNull
+    private int id;
 
     @NotBlank
     @Size(max = 50)
-    @Column(nullable = false)
     private String title;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
-    private List<Article> articles;
+    private List<ArticleLightDto> articles;
 
-    private List<Subscription> subscriptions;
+    private List<SubscriptionDto> subscriptions;
 }
