@@ -3,7 +3,6 @@ package com.openclassrooms.mddapi.service;
 import com.openclassrooms.mddapi.dto.auth.AuthResponse;
 import com.openclassrooms.mddapi.dto.auth.LoginRequest;
 import com.openclassrooms.mddapi.dto.auth.RegisterRequest;
-import com.openclassrooms.mddapi.exception.ApiException;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.security.JwtService;
@@ -14,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AuthService {
@@ -35,8 +35,9 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request) {
         String email = request.getEmail().trim().toLowerCase();
+
         if (userRepository.existsByEmail(email)) {
-            throw new ApiException(HttpStatus.CONFLICT, "Cet email est déjà utilisé");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Cet email est déjà utilisé");
         }
 
         User user = User.builder()
@@ -46,6 +47,7 @@ public class AuthService {
                 .build();
 
         User saved = userRepository.save(user);
+
         String token = jwtService.generateToken(UserPrincipal.from(saved));
         return new AuthResponse(token);
     }

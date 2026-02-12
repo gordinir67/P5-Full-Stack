@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.service;
 
 import com.openclassrooms.mddapi.dto.subscription.SubscriptionDto;
 import com.openclassrooms.mddapi.dto.theme.ThemeDto;
-import com.openclassrooms.mddapi.exception.ApiException;
 import com.openclassrooms.mddapi.mapper.SubscriptionMapper;
 import com.openclassrooms.mddapi.mapper.ThemeMapper;
 import com.openclassrooms.mddapi.models.Subscription;
@@ -13,6 +12,7 @@ import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -49,10 +49,10 @@ public class ThemeService {
         }
 
         Theme theme = themeRepository.findById(themeId)
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Thème introuvable"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Thème introuvable"));
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));
 
         Subscription subscription = Subscription.builder()
                 .user(user)

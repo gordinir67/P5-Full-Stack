@@ -5,7 +5,6 @@ import com.openclassrooms.mddapi.dto.article.ArticleLightDto;
 import com.openclassrooms.mddapi.dto.article.CreateArticleRequest;
 import com.openclassrooms.mddapi.dto.comment.CommentDto;
 import com.openclassrooms.mddapi.dto.comment.CreateCommentRequest;
-import com.openclassrooms.mddapi.exception.ApiException;
 import com.openclassrooms.mddapi.mapper.ArticleMapper;
 import com.openclassrooms.mddapi.mapper.CommentMapper;
 import com.openclassrooms.mddapi.models.Article;
@@ -20,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -59,7 +59,7 @@ public class ArticleService {
     @Transactional(readOnly = true)
     public ArticleDto getArticle(Integer articleId) {
         Article article = articleRepository.findById(articleId)
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Article introuvable"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Article introuvable"));
 
         List<CommentDto> comments = commentRepository.findAllByArticleIdOrderByCreatedAtAsc(articleId)
                 .stream()
@@ -72,10 +72,10 @@ public class ArticleService {
     @Transactional
     public ArticleDto createArticle(Long userId, CreateArticleRequest request) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));
 
         Theme theme = themeRepository.findById(request.getThemeId())
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Thème introuvable"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Thème introuvable"));
 
         Article saved = articleRepository.save(
                 Article.builder()
@@ -92,10 +92,10 @@ public class ArticleService {
     @Transactional
     public CommentDto addComment(Long userId, Integer articleId, CreateCommentRequest request) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));
 
         Article article = articleRepository.findById(articleId)
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Article introuvable"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Article introuvable"));
 
         Comment saved = commentRepository.save(
                 Comment.builder()
