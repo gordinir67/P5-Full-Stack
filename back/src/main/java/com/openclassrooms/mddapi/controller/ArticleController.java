@@ -7,6 +7,7 @@ import com.openclassrooms.mddapi.dto.comment.CommentDto;
 import com.openclassrooms.mddapi.dto.comment.CreateCommentRequest;
 import com.openclassrooms.mddapi.security.UserPrincipal;
 import com.openclassrooms.mddapi.service.ArticleService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@SecurityRequirement(name = "bearerAuth")
 @RequestMapping("/api/articles")
 public class ArticleController {
 

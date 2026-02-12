@@ -6,6 +6,7 @@ import com.openclassrooms.mddapi.dto.user.UserDto;
 import com.openclassrooms.mddapi.security.UserPrincipal;
 import com.openclassrooms.mddapi.service.ThemeService;
 import com.openclassrooms.mddapi.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@SecurityRequirement(name = "bearerAuth")
 @RequestMapping("/api/me")
 public class MeController {
 
