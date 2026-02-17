@@ -1,1 +1,184 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles + design tokens (responsive, mostly rem/clamp)
+   Based on the provided MDD desktop/mobile mockups. */
+
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+
+  /* MDD purple (adjust if you want closer match) */
+  --primary: #7b61ff;
+  --primary-2: #684ee6;
+
+  --radius: 0.75rem;
+  --shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+
+  /* Layout */
+  --container: 72rem; /* ~1152px */
+  --gutter: clamp(1rem, 3vw, 1.5rem);
+
+  /* Spacing scale */
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+
+  /* Type scale */
+  --h1: clamp(1.5rem, 2vw + 1rem, 2.25rem);
+  --h2: clamp(1.25rem, 1.5vw + 1rem, 1.75rem);
+  --p: 1rem;
+  --small: 0.875rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.page {
+  padding-block: var(--space-5);
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid transparent;
+  font: inherit;
+  cursor: pointer;
+  transition: 160ms ease;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background: var(--primary-2);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--line);
+}
+
+.btn--danger {
+  background: transparent;
+  color: #b91c1c;
+}
+
+.btn--danger:hover {
+  background: rgba(185, 28, 28, 0.08);
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+}
+
+.textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  min-height: 10rem;
+  resize: vertical;
+  font: inherit;
+}
+
+.form {
+  width: min(32rem, 100%);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.label {
+  font-size: var(--small);
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.sep {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: var(--space-5) 0;
+}
+
+/* Auth-like top bar used on login/register/detail/create pages */
+.topbar {
+  display: grid;
+  grid-template-columns: 2rem 1fr 2rem;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.topbar__back {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.topbar__title {
+  margin: 0;
+  text-align: center;
+  font-size: var(--h2);
+}
+
+/* Breakpoints in em (48em ~ 768px) */
+@media (max-width: 48em) {
+  .card {
+    padding: var(--space-3);
+  }
+  .page {
+    padding-block: var(--space-4);
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
