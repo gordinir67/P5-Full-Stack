@@ -26,11 +26,12 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
   max-width: 26rem;
+}
 
-  a[mat-stroked-button] {
-    width: 100%;
-    justify-content: center;
-  }
+/* Assure que les boutons prennent toute la largeur de leur cellule */
+.landing__actions a[mat-stroked-button] {
+  width: 100%;
+  justify-content: center;
 }
 
 /* Mobile */
@@ -38,19 +39,34 @@
   .landing {
     gap: var(--space-4);
   }
+
   .center {
-    align-items: flex-start;  
-    padding-top: calc(var(--gutter) * 2); 
+    align-items: flex-start;
+    padding-top: calc(var(--gutter) * 2);
   }
+
   .landing__actions {
     grid-template-columns: 1fr;
     max-width: 18rem;
-    gap: 1.25rem;
+
+    /* + d'espace entre les boutons sur mobile */
+    gap: 3.5rem; /* ajuste à ton goût (ex: 1.5rem -> 2.25rem) */
   }
+
+  /* Boutons plus gros sur mobile */
+  .landing__actions a[mat-stroked-button] {
+    width: 100%;
+    justify-content: center;
+
+    min-height: 52px;        /* 48-56px recommandé mobile */
+    padding: 0.9rem 1.1rem;  /* plus d'aire cliquable */
+    font-size: 1.05rem;
+    border-width: 2px;       /* optionnel */
+  }
+
   .landing__logo {
     width: min(22rem, 82vw);
     margin-top: clamp(2rem, 8vh, 5rem);
     margin-bottom: clamp(2rem, 6vh, 3.5rem);
   }
-
 }

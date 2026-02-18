@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="auth-toolbar">
+  <a routerLink="/" class="auth-toolbar__brand" aria-label="Retour à l’accueil">
+    <img src="assets/logo_p6.png" alt="MDD" class="auth-toolbar__logo" />
+  </a>
+</mat-toolbar>
+
+<main class="container page">
+  <div class="topbar">
+    <a mat-icon-button routerLink="/" aria-label="Retour">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1 class="topbar__title">Se connecter</h1>
+    <span aria-hidden="true"></span>
+  </div>
+
+  <mat-card class="auth-card">
+    <mat-card-content>
+      <form class="auth-form" action="#" method="post">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>E-mail ou nom d’utilisateur</mat-label>
+          <input matInput type="text" value="email@email.fr" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" value="motdepasse" />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="button">Se connecter</button>
+        </div>
+
+        <a mat-button routerLink="/register">Pas de compte ? S’inscrire</a>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</main>
