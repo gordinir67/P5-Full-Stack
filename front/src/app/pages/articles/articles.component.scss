@@ -1,0 +1,43 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.sort {
+  width: min(14rem, 100%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.article-card {
+  height: 100%;
+}
+
+.article-card p {
+  margin: 0;
+  color: #1f2937;
+  font-size: var(--small);
+  line-height: 1.5;
+}
+
+/* Desktop large: 3 columns like the mockup */
+@media (min-width: 64em) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 48em) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

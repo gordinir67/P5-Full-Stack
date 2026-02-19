@@ -1,0 +1,41 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  height: 6rem;
+  min-height: 6rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--header-border);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  height: 6rem;
+  width: auto;
+}
+
+.spacer { flex: 1 1 auto; }
+
+.nav--desktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav--mobile {
+  display: none;
+}
+
+/* Responsive switch */
+@media (max-width: 48em) {
+  .nav--desktop { display: none; }
+  .nav--mobile { display: inline-flex; }
+}

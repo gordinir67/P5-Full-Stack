@@ -182,24 +182,21 @@ img {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* =========================
-   GLOBAL MATERIAL BUTTON STYLE
-   (sauf stroked-button)
-   ========================= */
+.mdd-button {
+  background-color: #7763C5;
+  color: white;
 
-/* On cible TOUS les boutons Material SAUF les stroked */
-.mdc-button.mat-mdc-button-base:not(.mat-mdc-outlined-button) {
-  background-color: #7763C5 !important;
-  color: #fff !important;
-  border-radius: 999px !important;
+  border: none;         
+  outline: none;
+  appearance: none;     
+
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+
+  font: inherit;
+  cursor: pointer;
 }
 
-/* Label blanc */
-.mdc-button.mat-mdc-button-base:not(.mat-mdc-outlined-button) .mdc-button__label {
-  color: #fff !important;
-}
-
-/* Disabled */
-.mdc-button.mat-mdc-button-base:not(.mat-mdc-outlined-button):disabled {
-  opacity: 0.6;
+.mdd-button:hover {
+  background-color: #684ee6;
 }

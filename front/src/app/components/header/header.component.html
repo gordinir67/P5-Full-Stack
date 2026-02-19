@@ -1,1 +1,46 @@
-<p>header works!</p>
+<mat-toolbar color="primary" class="app-toolbar">
+  <a class="brand" routerLink="/articles" aria-label="Accueil (Articles)">
+    <img src="assets/logo_p6.png" alt="MDD" class="logo" />
+  </a>
+
+  <span class="spacer"></span>
+
+  <!-- Desktop navigation -->
+  <nav class="nav nav--desktop" aria-label="Navigation principale">
+    <a mat-button routerLink="/articles" routerLinkActive="is-active">Articles</a>
+    <a mat-button routerLink="/themes" routerLinkActive="is-active">Thèmes</a>
+    <a mat-button routerLink="/profile" routerLinkActive="is-active">Profil</a>
+    <button mat-button color="warn" type="button">Se déconnecter</button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <button
+    mat-icon-button
+    class="nav nav--mobile"
+    [matMenuTriggerFor]="mobileMenu"
+    aria-label="Ouvrir le menu"
+    type="button"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-menu #mobileMenu="matMenu" xPosition="before">
+    <button mat-menu-item routerLink="/articles">
+      <mat-icon>article</mat-icon>
+      <span>Articles</span>
+    </button>
+    <button mat-menu-item routerLink="/themes">
+      <mat-icon>topic</mat-icon>
+      <span>Thèmes</span>
+    </button>
+    <button mat-menu-item routerLink="/profile">
+      <mat-icon>person</mat-icon>
+      <span>Profil</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item type="button">
+      <mat-icon color="warn">logout</mat-icon>
+      <span>Se déconnecter</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

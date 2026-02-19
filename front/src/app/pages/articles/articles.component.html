@@ -1,1 +1,98 @@
-<p>articles works!</p>
+<app-header></app-header>
+
+<main class="container page">
+  <div class="toolbar">
+<a class="mdd-button" routerLink="/articles/create">
+  Créer un article
+</a>
+
+    <mat-form-field appearance="outline" class="sort">
+      <mat-label>Trier par</mat-label>
+      <mat-select value="Date">
+        <mat-option value="Date">Date</mat-option>
+        <mat-option value="Auteur">Auteur</mat-option>
+        <mat-option value="Titre">Titre</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <section class="grid" aria-label="Liste des articles">
+    <mat-card class="article-card">
+      <mat-card-title>Titre de l’article</mat-card-title>
+      <mat-card-subtitle>01/01/2026 • Auteur</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <a mat-button color="primary" routerLink="/articles/1">Lire</a>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="article-card">
+      <mat-card-title>Titre de l’article</mat-card-title>
+      <mat-card-subtitle>02/01/2026 • Auteur</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <a mat-button color="primary" routerLink="/articles/2">Lire</a>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="article-card">
+      <mat-card-title>Titre de l’article</mat-card-title>
+      <mat-card-subtitle>03/01/2026 • Auteur</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <a mat-button color="primary" routerLink="/articles/3">Lire</a>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="article-card">
+      <mat-card-title>Titre de l’article</mat-card-title>
+      <mat-card-subtitle>04/01/2026 • Auteur</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <a mat-button color="primary" routerLink="/articles/4">Lire</a>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="article-card">
+      <mat-card-title>Titre de l’article</mat-card-title>
+      <mat-card-subtitle>05/01/2026 • Auteur</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <a mat-button color="primary" routerLink="/articles/5">Lire</a>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="article-card">
+      <mat-card-title>Titre de l’article</mat-card-title>
+      <mat-card-subtitle>06/01/2026 • Auteur</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <a mat-button color="primary" routerLink="/articles/6">Lire</a>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+</main>
