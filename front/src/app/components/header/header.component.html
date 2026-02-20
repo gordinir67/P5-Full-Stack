@@ -1,3 +1,11 @@
+<!-- Toggle (CSS-only) -->
+<input
+  id="mobileNavToggle"
+  class="mobile-nav-toggle"
+  type="checkbox"
+  aria-hidden="true"
+/>
+
 <mat-toolbar color="primary" class="app-toolbar">
   <a class="brand" routerLink="/articles" aria-label="Accueil (Articles)">
     <img src="assets/logo_p6.png" alt="MDD" class="logo" />
@@ -30,11 +38,12 @@
       Thèmes
     </a>
 
-    <!-- Profil => image -->
+    <!-- Desktop: Profil = image -->
     <a
       mat-button
       routerLink="/profile"
       routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
       aria-label="Profil"
       class="profile-btn"
     >
@@ -42,57 +51,72 @@
     </a>
   </nav>
 
-  <!-- Mobile menu -->
-  <button
-    mat-icon-button
-    class="nav nav--mobile"
-    [matMenuTriggerFor]="mobileMenu"
+  <!-- Mobile trigger (uniquement mobile via CSS) -->
+  <label
+    for="mobileNavToggle"
+    class="nav nav--mobile mobile-menu-btn"
     aria-label="Ouvrir le menu"
-    type="button"
+    role="button"
+    tabindex="0"
   >
     <mat-icon>menu</mat-icon>
-  </button>
+  </label>
+</mat-toolbar>
 
-  <mat-menu #mobileMenu="matMenu" xPosition="before">
-    <!-- Déconnexion en premier -->
-    <button mat-menu-item type="button" class="logout-menu-item">
-      <mat-icon class="logout-icon">logout</mat-icon>
-      <span>Se déconnecter</span>
+<!-- Backdrop grisé (clique pour fermer) -->
+<label
+  for="mobileNavToggle"
+  class="mobile-drawer-backdrop"
+  aria-label="Fermer le menu"
+></label>
+
+<!-- Drawer mobile (maquette: éléments à droite, pas d'icônes) -->
+<aside class="mobile-drawer" aria-label="Menu mobile">
+  <div class="mobile-drawer__content">
+    <!-- Déconnexion -->
+    <button type="button" class="mobile-drawer__item logout-menu-item">
+      Se déconnecter
     </button>
 
-    <mat-divider></mat-divider>
-
-    <button
-      mat-menu-item
+    <!-- Articles -->
+    <label
+      for="mobileNavToggle"
+      class="mobile-drawer__item"
       routerLink="/articles"
       routerLinkActive="is-active"
       [routerLinkActiveOptions]="{ exact: true }"
+      role="menuitem"
+      tabindex="0"
     >
-      <mat-icon>article</mat-icon>
-      <span>Articles</span>
-    </button>
+      Articles
+    </label>
 
-    <button
-      mat-menu-item
+    <!-- Thèmes -->
+    <label
+      for="mobileNavToggle"
+      class="mobile-drawer__item"
       routerLink="/themes"
       routerLinkActive="is-active"
       [routerLinkActiveOptions]="{ exact: true }"
+      role="menuitem"
+      tabindex="0"
     >
-      <mat-icon>topic</mat-icon>
-      <span>Thèmes</span>
-    </button>
+      Thèmes
+    </label>
 
-    <!-- Profil => image -->
-    <button
-      mat-menu-item
+    <!-- Profil (en bas à droite, image uniquement en mobile drawer) -->
+    <label
+      for="mobileNavToggle"
+      class="mobile-drawer__profile profile-menu-item"
       routerLink="/profile"
       routerLinkActive="is-active"
       [routerLinkActiveOptions]="{ exact: true }"
       aria-label="Profil"
-      class="profile-menu-item"
+      role="menuitem"
+      tabindex="0"
     >
-      <img src="/assets/profile-icon.png" alt="Profil" class="profile-icon" />
+      <img src="assets/profile-icon.png" alt="Profil" class="profile-icon" />
       <span class="sr-only">Profil</span>
-    </button>
-  </mat-menu>
-</mat-toolbar>
+    </label>
+  </div>
+</aside>
