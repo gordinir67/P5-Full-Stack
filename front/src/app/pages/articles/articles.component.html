@@ -2,97 +2,148 @@
 
 <main class="container page">
   <div class="toolbar">
-<a class="mdd-button" routerLink="/articles/create">
-  Créer un article
-</a>
+    <a class="mdd-button" routerLink="/articles/create">
+      Créer un article
+    </a>
 
-    <mat-form-field appearance="outline" class="sort">
-      <mat-label>Trier par</mat-label>
-      <mat-select value="Date">
-        <mat-option value="Date">Date</mat-option>
-        <mat-option value="Auteur">Auteur</mat-option>
-        <mat-option value="Titre">Titre</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <!-- Toggle flèche (CSS only) -->
+    <input
+      id="sortDir"
+      type="checkbox"
+      class="sort-toggle__checkbox"
+      (change)="onSortDirChange($event)"
+    />
+
+    <label for="sortDir" class="sort-toggle" aria-label="Inverser l'ordre de tri par date">
+      <span class="sort-toggle__text">Trier par date</span>
+      <span class="sort-toggle__arrow" aria-hidden="true">↓</span>
+    </label>
   </div>
 
   <section class="grid" aria-label="Liste des articles">
-    <mat-card class="article-card">
+    <mat-card
+      class="article-card article-card--clickable"
+      routerLink="/articles/1"
+      matRipple
+      role="link"
+      tabindex="0"
+      aria-label="Ouvrir l’article 1"
+    >
       <mat-card-title>Titre de l’article</mat-card-title>
-      <mat-card-subtitle>01/01/2026 • Auteur</mat-card-subtitle>
-      <mat-card-content>
-        <p>
-          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-        </p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <a mat-button color="primary" routerLink="/articles/1">Lire</a>
-      </mat-card-actions>
+      <mat-card-subtitle class="meta">
+        <span class="date">01/01/2026</span>
+        <span class="author">Auteur</span>
+      </mat-card-subtitle>
+
+      <p>
+        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+        scrambled
+      </p>
     </mat-card>
 
-    <mat-card class="article-card">
+    <mat-card
+      class="article-card article-card--clickable"
+      routerLink="/articles/2"
+      matRipple
+      role="link"
+      tabindex="0"
+      aria-label="Ouvrir l’article 2"
+    >
       <mat-card-title>Titre de l’article</mat-card-title>
-      <mat-card-subtitle>02/01/2026 • Auteur</mat-card-subtitle>
-      <mat-card-content>
-        <p>
-          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
-        </p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <a mat-button color="primary" routerLink="/articles/2">Lire</a>
-      </mat-card-actions>
+      <mat-card-subtitle class="meta">
+        <span class="date">02/01/2026</span>
+        <span class="author">Auteur</span>
+      </mat-card-subtitle>
+
+      <p>
+        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's...
+      </p>
     </mat-card>
 
-    <mat-card class="article-card">
+    <mat-card
+      class="article-card article-card--clickable"
+      routerLink="/articles/3"
+      matRipple
+      role="link"
+      tabindex="0"
+      aria-label="Ouvrir l’article 3"
+    >
       <mat-card-title>Titre de l’article</mat-card-title>
-      <mat-card-subtitle>03/01/2026 • Auteur</mat-card-subtitle>
-      <mat-card-content>
-        <p>
-          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
-        </p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <a mat-button color="primary" routerLink="/articles/3">Lire</a>
-      </mat-card-actions>
+      <mat-card-subtitle class="meta">
+        <span class="date">03/01/2026</span>
+        <span class="author">Auteur</span>
+      </mat-card-subtitle>
+
+      <p>
+        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's...
+      </p>
     </mat-card>
 
-    <mat-card class="article-card">
+    <mat-card
+      class="article-card article-card--clickable"
+      routerLink="/articles/4"
+      matRipple
+      role="link"
+      tabindex="0"
+      aria-label="Ouvrir l’article 4"
+    >
       <mat-card-title>Titre de l’article</mat-card-title>
-      <mat-card-subtitle>04/01/2026 • Auteur</mat-card-subtitle>
-      <mat-card-content>
-        <p>
-          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
-        </p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <a mat-button color="primary" routerLink="/articles/4">Lire</a>
-      </mat-card-actions>
+      <mat-card-subtitle class="meta">
+        <span class="date">04/01/2026</span>
+        <span class="author">Auteur</span>
+      </mat-card-subtitle>
+
+      <p>
+        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's...
+      </p>
     </mat-card>
 
-    <mat-card class="article-card">
+    <mat-card
+      class="article-card article-card--clickable"
+      routerLink="/articles/5"
+      matRipple
+      role="link"
+      tabindex="0"
+      aria-label="Ouvrir l’article 5"
+    >
       <mat-card-title>Titre de l’article</mat-card-title>
-      <mat-card-subtitle>05/01/2026 • Auteur</mat-card-subtitle>
-      <mat-card-content>
-        <p>
-          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
-        </p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <a mat-button color="primary" routerLink="/articles/5">Lire</a>
-      </mat-card-actions>
+      <mat-card-subtitle class="meta">
+        <span class="date">05/01/2026</span>
+        <span class="author">Auteur</span>
+      </mat-card-subtitle>
+
+      <p>
+        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's...
+      </p>
     </mat-card>
 
-    <mat-card class="article-card">
+    <mat-card
+      class="article-card article-card--clickable"
+      routerLink="/articles/6"
+      matRipple
+      role="link"
+      tabindex="0"
+      aria-label="Ouvrir l’article 6"
+    >
       <mat-card-title>Titre de l’article</mat-card-title>
-      <mat-card-subtitle>06/01/2026 • Auteur</mat-card-subtitle>
-      <mat-card-content>
-        <p>
-          Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...
-        </p>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        <a mat-button color="primary" routerLink="/articles/6">Lire</a>
-      </mat-card-actions>
+      <mat-card-subtitle class="meta">
+        <span class="date">06/01/2026</span>
+        <span class="author">Auteur</span>
+      </mat-card-subtitle>
+
+      <p>
+        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+        industry's...
+      </p>
     </mat-card>
   </section>
 </main>

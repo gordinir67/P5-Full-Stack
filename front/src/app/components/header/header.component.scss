@@ -1,3 +1,5 @@
+/* Ton CSS existant ... */
+
 .app-toolbar {
   position: sticky;
   top: 0;
@@ -38,4 +40,65 @@
 @media (max-width: 48em) {
   .nav--desktop { display: none; }
   .nav--mobile { display: inline-flex; }
+}
+
+/* ----------------------------- */
+/* ACTIF (Articles / Thèmes / Profil) => #6C5CCF */
+/* ----------------------------- */
+.nav--desktop .is-active {
+  color: #6C5CCF !important;
+  --mdc-text-button-label-text-color: #6C5CCF;
+}
+
+.mat-mdc-menu-item.is-active,
+.mat-mdc-menu-item.is-active .mat-mdc-menu-item-text,
+.mat-mdc-menu-item.is-active mat-icon {
+  color: #6C5CCF !important;
+}
+
+/* ----------------------------- */
+/* PROFIL => image */
+/* ----------------------------- */
+.profile-icon {
+  height: 3.5rem;
+  width: 4.5rem;
+  object-fit: contain;
+  display: block;
+}
+
+/* évite que le bouton "Profil" paraisse trop large */
+.profile-btn {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* accessibilité : texte caché (mobile) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----------------------------- */
+/* DÉCONNEXION => #A40F0F */
+/* ----------------------------- */
+.logout-btn {
+  color: #A40F0F !important;
+  --mdc-text-button-label-text-color: #A40F0F;
+}
+
+.logout-menu-item,
+.logout-menu-item .mat-mdc-menu-item-text,
+.logout-menu-item mat-icon {
+  color: #A40F0F !important;
+}
+
+.logout-icon {
+  color: #A40F0F !important;
 }

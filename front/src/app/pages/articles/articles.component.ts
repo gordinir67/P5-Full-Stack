@@ -20,5 +20,8 @@ import { HeaderComponent } from '../../components/header/header.component';
   styleUrl: './articles.component.scss'
 })
 export class ArticlesComponent {
+onSortDirChange(event: Event) {
+
+}
 
 }

@@ -7,10 +7,39 @@
 
   <!-- Desktop navigation -->
   <nav class="nav nav--desktop" aria-label="Navigation principale">
-    <a mat-button routerLink="/articles" routerLinkActive="is-active">Articles</a>
-    <a mat-button routerLink="/themes" routerLinkActive="is-active">Thèmes</a>
-    <a mat-button routerLink="/profile" routerLinkActive="is-active">Profil</a>
-    <button mat-button color="warn" type="button">Se déconnecter</button>
+    <!-- Déconnexion en premier -->
+    <button mat-button type="button" class="logout-btn">
+      Se déconnecter
+    </button>
+
+    <a
+      mat-button
+      routerLink="/articles"
+      routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Articles
+    </a>
+
+    <a
+      mat-button
+      routerLink="/themes"
+      routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Thèmes
+    </a>
+
+    <!-- Profil => image -->
+    <a
+      mat-button
+      routerLink="/profile"
+      routerLinkActive="is-active"
+      aria-label="Profil"
+      class="profile-btn"
+    >
+      <img src="assets/profile-icon.png" alt="Profil" class="profile-icon" />
+    </a>
   </nav>
 
   <!-- Mobile menu -->
@@ -25,22 +54,45 @@
   </button>
 
   <mat-menu #mobileMenu="matMenu" xPosition="before">
-    <button mat-menu-item routerLink="/articles">
+    <!-- Déconnexion en premier -->
+    <button mat-menu-item type="button" class="logout-menu-item">
+      <mat-icon class="logout-icon">logout</mat-icon>
+      <span>Se déconnecter</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button
+      mat-menu-item
+      routerLink="/articles"
+      routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <mat-icon>article</mat-icon>
       <span>Articles</span>
     </button>
-    <button mat-menu-item routerLink="/themes">
+
+    <button
+      mat-menu-item
+      routerLink="/themes"
+      routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       <mat-icon>topic</mat-icon>
       <span>Thèmes</span>
     </button>
-    <button mat-menu-item routerLink="/profile">
-      <mat-icon>person</mat-icon>
-      <span>Profil</span>
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-menu-item type="button">
-      <mat-icon color="warn">logout</mat-icon>
-      <span>Se déconnecter</span>
+
+    <!-- Profil => image -->
+    <button
+      mat-menu-item
+      routerLink="/profile"
+      routerLinkActive="is-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      aria-label="Profil"
+      class="profile-menu-item"
+    >
+      <img src="/assets/profile-icon.png" alt="Profil" class="profile-icon" />
+      <span class="sr-only">Profil</span>
     </button>
   </mat-menu>
 </mat-toolbar>
