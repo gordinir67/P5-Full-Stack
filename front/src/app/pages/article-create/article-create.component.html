@@ -1,1 +1,46 @@
-<p>article-create works!</p>
+<app-header></app-header>
+
+<main class="container page">
+  <div class="detail-top">
+    <a
+      mat-icon-button
+      class="detail-top__back"
+      routerLink="/articles"
+      aria-label="Retour"
+    >
+      <mat-icon>west</mat-icon>
+    </a>
+
+    <h1 class="detail-top__title">Créer un nouvel article</h1>
+
+    <!-- spacer pour conserver le centrage du titre -->
+    <span class="detail-top__spacer" aria-hidden="true"></span>
+  </div>
+
+  <section class="create">
+    <form class="create-form" action="#" method="post">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Sélectionner un thème</mat-label>
+        <mat-select>
+          <mat-option value="Thème 1">Thème 1</mat-option>
+          <mat-option value="Thème 2">Thème 2</mat-option>
+          <mat-option value="Thème 3">Thème 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Titre de l’article</mat-label>
+        <input matInput type="text" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Contenu de l’article</mat-label>
+        <textarea matInput rows="9"></textarea>
+      </mat-form-field>
+
+      <div class="actions">
+        <button class="mdd-button" type="button">Créer</button>
+      </div>
+    </form>
+  </section>
+</main>

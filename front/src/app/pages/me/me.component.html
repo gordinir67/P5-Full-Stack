@@ -1,1 +1,72 @@
-<p>me works!</p>
+<app-header></app-header>
+
+<main class="container page">
+  <h1 class="profile-title">Profil utilisateur</h1>
+
+  <mat-card class="profile">
+    <mat-card-content>
+      <form class="profile-form" action="#" method="post">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" value="Username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" value="email@email.fr" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" value="motdepasse" />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" type="button">Sauvegarder</button>
+        </div>
+      </form>
+
+      <mat-divider class="divider"></mat-divider>
+
+      <h2 class="h2">Abonnements</h2>
+
+      <div class="subs">
+        <mat-card class="sub-card" appearance="outlined">
+          <mat-card-title>Titre du thème</mat-card-title>
+          <mat-card-content>
+            <p>
+              Description: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard...
+            </p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" type="button">Se désabonner</button>
+          </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="sub-card" appearance="outlined">
+          <mat-card-title>Titre du thème</mat-card-title>
+          <mat-card-content>
+            <p>
+              Description: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard...
+            </p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" type="button">Se désabonner</button>
+          </mat-card-actions>
+        </mat-card>
+
+        <mat-card class="sub-card" appearance="outlined">
+          <mat-card-title>Titre du thème</mat-card-title>
+          <mat-card-content>
+            <p>
+              Description: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard...
+            </p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" type="button">Se désabonner</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</main>

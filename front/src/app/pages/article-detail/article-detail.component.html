@@ -1,1 +1,51 @@
-<p>article-detail works!</p>
+<app-header></app-header>
+
+<main class="container page">
+  <div class="detail-top">
+    <a mat-icon-button routerLink="/articles" aria-label="Retour">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+    <h1 class="detail-top__title">Titre de l’article sélectionné</h1>
+  </div>
+
+  <mat-card class="article">
+    <mat-card-content>
+      <div class="article__meta">
+        <div><span>Date</span> <strong>01/01/2026</strong></div>
+        <div><span>Auteur</span> <strong>Auteur</strong></div>
+        <div><span>Thème</span> <strong>Thème</strong></div>
+      </div>
+
+      <p class="article__content">
+        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      </p>
+
+      <mat-divider></mat-divider>
+
+      <h2 class="article__h2">Commentaires</h2>
+
+      <div class="comments">
+        <mat-card class="comment" appearance="outlined">
+          <div class="comment__user">username</div>
+          <div class="comment__text">contenu du commentaire</div>
+        </mat-card>
+
+        <mat-card class="comment" appearance="outlined">
+          <div class="comment__user">username</div>
+          <div class="comment__text">contenu du commentaire</div>
+        </mat-card>
+      </div>
+
+      <div class="comment-form">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Écrivez ici votre commentaire</mat-label>
+          <textarea matInput rows="4"></textarea>
+        </mat-form-field>
+
+        <button mat-fab color="primary" type="button" aria-label="Envoyer">
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</main>

@@ -206,3 +206,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   cursor: not-allowed;
   opacity: 0.9;
 }
+
+/* Icône "arrow_back" plus grosse partout */
+a[mat-icon-button] mat-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+
+/* Optionnel : zone cliquable un peu plus confortable */
+a[mat-icon-button] {
+  width: 44px;
+  height: 44px;
+}
