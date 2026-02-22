@@ -7,7 +7,7 @@
 <main class="container page">
   <div class="topbar">
     <a mat-icon-button routerLink="/" aria-label="Retour">
-      <mat-icon>arrow_back</mat-icon>
+      <mat-icon>west</mat-icon>
     </a>
     <h1 class="topbar__title">Inscription</h1>
     <span aria-hidden="true"></span>
@@ -16,26 +16,52 @@
   <mat-card class="auth-card">
     <mat-card-content>
       <form class="auth-form" action="#" method="post">
-        <mat-form-field appearance="outline" class="full">
-          <mat-label>Nom d’utilisateur</mat-label>
-          <input matInput type="text" value="Nom d’utilisateur" />
-        </mat-form-field>
+        <!-- Champ 1 -->
+        <div class="field">
+          <label class="field-label" for="register-username">Nom d’utilisateur</label>
+          <mat-form-field appearance="outline" class="full">
+            <input
+              matInput
+              id="register-username"
+              type="text"
+            
+              autocomplete="username"
+            />
+          </mat-form-field>
+        </div>
 
-        <mat-form-field appearance="outline" class="full">
-          <mat-label>Adresse e-mail</mat-label>
-          <input matInput type="email" value="email@email.fr" />
-        </mat-form-field>
+        <!-- Champ 2 -->
+        <div class="field">
+          <label class="field-label" for="register-email">Adresse e-mail</label>
+          <mat-form-field appearance="outline" class="full">
+            <input
+              matInput
+              id="register-email"
+              type="email"
 
-        <mat-form-field appearance="outline" class="full">
-          <mat-label>Mot de passe</mat-label>
-          <input matInput type="password" value="motdepasse" />
-        </mat-form-field>
+              autocomplete="email"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Champ 3 -->
+        <div class="field">
+          <label class="field-label" for="register-password">Mot de passe</label>
+          <mat-form-field appearance="outline" class="full">
+            <input
+              matInput
+              id="register-password"
+              type="password"
+
+              autocomplete="new-password"
+            />
+          </mat-form-field>
+        </div>
 
         <div class="actions">
           <button class="mdd-button" type="button">S’inscrire</button>
         </div>
 
-        <a mat-button routerLink="/login">Déjà un compte ? Se connecter</a>
       </form>
     </mat-card-content>
   </mat-card>

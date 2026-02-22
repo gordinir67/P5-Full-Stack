@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--gutter);
 }
 
 .landing {
@@ -24,17 +23,47 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
+
+  column-gap: 4rem;   /* espace horizontal (desktop) */
+  row-gap: var(--space-3); /* si jamais ça passe en 2 lignes */
+
   max-width: 26rem;
 }
-
-/* Assure que les boutons prennent toute la largeur de leur cellule */
-.landing__actions a[mat-stroked-button] {
-  width: 100%;
+/* ===== Bouton style "classique" ===== */
+.btn-classic {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+
+  width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 1.2rem;
+
+  background: #fff;
+  color: #111;
+  text-decoration: none;
+
+  border: 2px solid #777;
+  border-radius: 10px;
 }
 
-/* Mobile */
+.btn-classic:hover {
+  background: #f7f7f7;
+}
+
+.btn-classic:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.btn-classic:focus-visible {
+  outline: 3px solid rgba(30, 144, 255, 0.35);
+  outline-offset: 2px;
+}
+
+/* ===== Mobile ===== */
 @media (max-width: 48em) {
   .landing {
     gap: var(--space-4);
@@ -48,25 +77,27 @@
   .landing__actions {
     grid-template-columns: 1fr;
     max-width: 18rem;
-
-    /* + d'espace entre les boutons sur mobile */
-    gap: 3.5rem; /* ajuste à ton goût (ex: 1.5rem -> 2.25rem) */
+    gap: 3.5rem; /* espace entre les boutons sur mobile */
   }
 
-  /* Boutons plus gros sur mobile */
-  .landing__actions a[mat-stroked-button] {
-    width: 100%;
-    justify-content: center;
-
-    min-height: 52px;        /* 48-56px recommandé mobile */
-    padding: 0.9rem 1.1rem;  /* plus d'aire cliquable */
+  /* boutons plus gros sur mobile */
+  .btn-classic {
+    min-height: 52px;
+    padding: 0.9rem 1.1rem;
     font-size: 1.05rem;
-    border-width: 2px;       /* optionnel */
+    border-width: 2px;
   }
 
   .landing__logo {
     width: min(22rem, 82vw);
     margin-top: clamp(2rem, 8vh, 5rem);
     margin-bottom: clamp(2rem, 6vh, 3.5rem);
+  }
+
+}
+
+@media (min-width: 48.001em) {
+  .landing {
+    transform: translateY(clamp(-6rem, -8vh, -3rem));
   }
 }

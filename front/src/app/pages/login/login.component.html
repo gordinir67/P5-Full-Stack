@@ -7,7 +7,7 @@
 <main class="container page">
   <div class="topbar">
     <a mat-icon-button routerLink="/" aria-label="Retour">
-      <mat-icon>arrow_back</mat-icon>
+      <mat-icon>west</mat-icon>
     </a>
     <h1 class="topbar__title">Se connecter</h1>
     <span aria-hidden="true"></span>
@@ -16,21 +16,38 @@
   <mat-card class="auth-card">
     <mat-card-content>
       <form class="auth-form" action="#" method="post">
-        <mat-form-field appearance="outline" class="full">
-          <mat-label>E-mail ou nom d’utilisateur</mat-label>
-          <input matInput type="text" value="email@email.fr" />
-        </mat-form-field>
+        <!-- Champ 1 -->
+        <div class="field">
+          <label class="field-label" for="login-identifier">E-mail ou nom d’utilisateur</label>
+          <mat-form-field appearance="outline" class="full">
+            <input
+              matInput
+              id="login-identifier"
+              type="text"
 
-        <mat-form-field appearance="outline" class="full">
-          <mat-label>Mot de passe</mat-label>
-          <input matInput type="password" value="motdepasse" />
-        </mat-form-field>
+              autocomplete="email"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Champ 2 -->
+        <div class="field">
+          <label class="field-label" for="login-password">Mot de passe</label>
+          <mat-form-field appearance="outline" class="full">
+            <input
+              matInput
+              id="login-password"
+              type="password"
+
+              autocomplete="current-password"
+            />
+          </mat-form-field>
+        </div>
 
         <div class="actions">
           <button class="mdd-button" type="button">Se connecter</button>
         </div>
 
-        <a mat-button routerLink="/register">Pas de compte ? S’inscrire</a>
       </form>
     </mat-card-content>
   </mat-card>

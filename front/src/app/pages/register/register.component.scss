@@ -21,69 +21,82 @@
   width: auto;
 }
 
-/* Le main (<main class="container page">) prend la hauteur visible restante sous la toolbar */
 .page {
   min-height: calc(100dvh - 6rem);
   display: flex;
   flex-direction: column;
 }
 
-/* La topbar reste en haut */
 .topbar {
   flex: 0 0 auto;
 }
 
-/* ✅ La card NE doit plus occuper tout l'espace restant */
+/* ✅ H1 pas gras partout */
+.topbar__title {
+  font-weight: 400;
+}
+
+/* ✅ Card “container” : pas de fond/bordure/ombre */
 .auth-card {
   width: min(30rem, 100%);
   margin-inline: auto;
-
   display: block;
 
-  /* petit espace sous la card (optionnel) */
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
   margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
 }
 
-/* ✅ plus besoin d'étirer le contenu */
-.auth-card mat-card-content {
+.auth-card mat-card-content,
+.auth-card .mat-mdc-card-content {
   display: block;
+  padding: 0;
 }
 
-/* Formulaire: mise en colonne normale */
 .auth-form {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  margin: 0 0 0.4rem;
+  padding-left: 0.25rem;
+}
+
 .full {
   width: 100%;
 }
 
-/* Augmente l'espace UNIQUEMENT entre les champs */
-mat-form-field.full + mat-form-field.full {
+.field + .field {
   margin-top: clamp(1.25rem, 5vh, 3.25rem);
 }
 
-/* Bouton juste sous "Mot de passe" */
 .actions {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
 }
 
-/* Lien juste sous le bouton */
 .auth-form a[mat-button] {
   margin-top: 0.75rem;
   align-self: center;
 }
 
 /* =========================
-   MOBILE : même rendu que ta capture,
-   mais responsive sur toutes tailles
+   MOBILE : même espacement que login
    ========================= */
 @media (max-width: 48em) {
-  /* 1) On enlève la grosse toolbar + son border */
   .auth-toolbar {
     display: none;
     border-bottom: 0;
@@ -92,7 +105,6 @@ mat-form-field.full + mat-form-field.full {
     padding: 0;
   }
 
-  /* 2) La page ne doit plus soustraire 6rem */
   .page {
     min-height: 100dvh;
   }
@@ -101,56 +113,51 @@ mat-form-field.full + mat-form-field.full {
     width: min(26rem, 100%);
   }
 
-  /* 3) Topbar en 3 lignes : flèche / logo / titre */
+  /* ✅ MOINS d'espace entre le H1 et les champs (comme login) */
+  .auth-card mat-card-content,
+  .auth-card .mat-mdc-card-content {
+    padding-top: clamp(3.75rem, 4.2vh, 4.25rem);
+  }
+
   .topbar {
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto auto;
     align-items: center;
-
     row-gap: 0.15rem;
 
-    /* identique à ton padding, + safe-area iOS */
     padding: calc(env(safe-area-inset-top) + 0.6rem) 1rem 0.15rem;
 
-    /* ✅ Variables fluides CALÉES sur ton rendu Galaxy S8+ (360×740) */
-    /* Galaxy: logo 15rem (~240px) => 240/360 = 66.67vw */
     --logo-w: clamp(13rem, 66.67vw, 18rem);
+    --logo-mt: clamp(1.1rem, 3.2vh, 2.1rem);
 
-    /* Galaxy: margin-top -2.5rem (40px) => 40/740 = 5.4vh */
-    --logo-mt: clamp(1.8rem, 5.4vh, 3.2rem);
+    /* ✅ PLUS d'espace logo ↔ H1 (comme login) */
+    --logo-mb: clamp(0rem, 0.25vh, 0.35rem);
 
-    /* Galaxy: margin-bottom -0.35rem (~5.6px) => 5.6/740 = 0.75vh */
-    --logo-mb: clamp(0.2rem, 0.75vh, 0.9rem);
-
-    /* Galaxy: title margin-top -1.5rem (24px) => 24/740 = 3.25vh */
-    --title-mt: clamp(0.9rem, 3.25vh, 2.2rem);
+    /* ✅ H1 un peu plus bas (comme login) */
+    --title-mt: clamp(0.05rem, 0.35vh, 0.25rem);
   }
 
-  /* flèche en haut à gauche */
   .topbar a[mat-icon-button] {
     grid-column: 1;
     grid-row: 1;
     justify-self: start;
   }
 
-  /* le spacer vide en haut à droite */
   .topbar span[aria-hidden="true"] {
     grid-column: 3;
     grid-row: 1;
   }
 
-  /* ✅ Logo centré + remonté (même technique que ton CSS d’origine) */
   .topbar::before {
     content: "";
-    display: block; /* ✅ IMPORTANT : sinon le pseudo-élément peut ne pas s’afficher */
+    display: block;
 
     grid-column: 1 / -1;
     grid-row: 2;
     justify-self: center;
 
     width: var(--logo-w);
-    /* équivalent à ton cadre 15rem x 10rem */
     aspect-ratio: 3 / 2;
     height: auto;
 
@@ -160,7 +167,6 @@ mat-form-field.full + mat-form-field.full {
     background: url("/assets/logo_p6.png") center / contain no-repeat;
   }
 
-  /* titre centré sous le logo */
   .topbar__title {
     grid-column: 1 / -1;
     grid-row: 3;
@@ -172,25 +178,23 @@ mat-form-field.full + mat-form-field.full {
     margin-top: calc(-1 * var(--title-mt));
   }
 
-  /* Sur mobile, on accentue un peu l'espace entre champs */
-  mat-form-field.full + mat-form-field.full {
+  .field + .field {
     margin-top: clamp(1.25rem, 6vh, 3.75rem);
   }
 }
 
 /* =========================
-   MOBILES “écrans courts” (hauteur faible)
-   => évite que le header prenne trop de place
+   MOBILES “écrans courts”
    ========================= */
 @media (max-width: 48em) and (max-height: 42rem) {
   .topbar {
     --logo-w: clamp(12rem, 62vw, 16rem);
-    --logo-mt: clamp(1.4rem, 4.6vh, 2.4rem);
-    --title-mt: clamp(0.6rem, 2.6vh, 1.2rem);
+    --logo-mt: clamp(0.9rem, 3.4vh, 1.8rem);
+
+    --title-mt: clamp(0.05rem, 0.3vh, 0.2rem);
   }
 
-  mat-form-field.full + mat-form-field.full {
+  .field + .field {
     margin-top: clamp(1rem, 4.5vh, 2.5rem);
   }
 }
-
