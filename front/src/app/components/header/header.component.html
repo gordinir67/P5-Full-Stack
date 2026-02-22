@@ -7,8 +7,8 @@
 />
 
 <mat-toolbar color="primary" class="app-toolbar">
-      <img class="brand" src="assets/logo_p6.png" alt="MDD" class="logo" />
-  
+  <img class="brand" src="assets/logo_p6.png" alt="MDD" class="logo" />
+
   <span class="spacer"></span>
 
   <!-- Desktop navigation -->
@@ -36,7 +36,7 @@
       Thèmes
     </a>
 
-    <!-- Desktop: Profil = image -->
+    <!-- Desktop: Profil = image (change on /me) -->
     <a
       mat-button
       routerLink="/me"
@@ -44,8 +44,13 @@
       [routerLinkActiveOptions]="{ exact: true }"
       aria-label="Profil"
       class="profile-btn"
+      #rlaMe="routerLinkActive"
     >
-      <img src="assets/profile-icon.png" alt="Profil" class="profile-icon" />
+      <img
+        class="profile-icon"
+        [src]="rlaMe.isActive ? 'assets/profile-icon-me.png' : 'assets/profile-icon.png'"
+        alt="Profil"
+      />
     </a>
   </nav>
 
@@ -106,14 +111,20 @@
     <label
       for="mobileNavToggle"
       class="mobile-drawer__profile profile-menu-item"
-      routerLink="/profile"
+      routerLink="/me"
       routerLinkActive="is-active"
       [routerLinkActiveOptions]="{ exact: true }"
       aria-label="Profil"
       role="menuitem"
       tabindex="0"
+      #rlaMeMobile="routerLinkActive"
     >
-      <img src="assets/profile-icon.png" alt="Profil" class="profile-icon" />
+      <img
+        src="assets/profile-icon.png"
+        class="profile-icon"
+        [src]="rlaMeMobile.isActive ? 'assets/profile-icon-me.png' : 'assets/profile-icon.png'"
+        alt="Profil"
+      />
       <span class="sr-only">Profil</span>
     </label>
   </div>

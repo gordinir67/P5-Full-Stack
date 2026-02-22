@@ -1,83 +1,255 @@
-.detail-top {
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* ✅ Mat-card principale : fond blanc, pas de bordure */
+.article.mat-mdc-card,
+.article.mat-mdc-card .mdc-card {
+  background: #fff !important;
+  border: none !important;
+}
+
+.article.mat-mdc-card {
+  box-shadow: none !important;
+  border-radius: 16px;
+
+  /* ✅ Variables pour synchroniser bulles / textarea / bouton */
+  --field-max: 820px;
+  --send-size: 43px;
+  --send-gap: 12px;
+}
+
+/* padding propre */
+.article mat-card-content {
+  padding: 24px;
+}
+
+/* ✅ Header du détail en full width + flèche à gauche écran */
+.detail-top--full {
+  position: relative;
+  width: 100%;
+  margin-top: 24px;
+
+  /* ✅ réduit l’espace avec le contenu */
+  margin-bottom: 6px;
+}
+
+/* ✅ même largeur que .page + même padding que mat-card-content */
+.detail-top__inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+
+  /* ✅ barre un peu moins haute */
+  min-height: 40px;
 }
 
+/* ✅ Flèche collée à gauche de l'écran */
 .detail-top__back {
-  font-size: 1.2rem;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
+/* ✅ IMPORTANT: le titre aligné à gauche comme le reste */
 .detail-top__title {
   margin: 0;
-  font-size: var(--h2);
+  font-size: var(--h2, 1.6rem);
+
+  width: 100%;
+  text-align: left;
+
+  /* ✅ pas de padding sur desktop */
+  padding-left: 0;
 }
 
+/* ✅ Override local : on ne touche pas style.scss */
+main.container.page.page--article-detail {
+  padding-top: 0 !important; /* ✅ supprime le gros padding-top de .page global */
+  /* padding-bottom : on laisse celui de style.scss par défaut */
+}
+
+/* ✅ Meta : une seule ligne, uniquement les valeurs */
 .article__meta {
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-  color: var(--muted);
-  font-size: var(--small);
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: var(--space-5, 24px);
+  margin-bottom: var(--space-4, 16px);
 }
 
-.article__meta span {
-  margin-right: 0.35rem;
-}
-
+/* ✅ 01/01/2026 / Auteur / Thème : pas en gras */
 .article__meta strong {
-  color: var(--text);
+  color: var(--text, #111827);
+  font-weight: 400;
 }
 
 .article__content {
-  margin: var(--space-4) 0;
+  margin: var(--space-4, 16px) 0;
   line-height: 1.6;
   color: #1f2937;
 }
 
-.article__h2 {
-  margin: 0 0 var(--space-3);
-  font-size: 1.1rem;
+.article__divider {
+  margin: var(--space-4, 16px) 0;
 }
 
+.article__h2 {
+  margin: 0 0 var(--space-3, 12px);
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+/* --- Commentaires --- */
 .comments {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  display: grid;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-4, 16px);
 }
 
 .comment {
   display: grid;
-  grid-template-columns: 8rem 1fr;
-  gap: var(--space-3);
+  grid-template-columns: 12rem minmax(0, 1fr);
+  gap: var(--space-3, 12px);
   align-items: start;
 }
 
 .comment__user {
-  font-weight: 700;
+  font-weight: 400;
+  color: #111827;
+  margin-left: 12px;
+  padding-top: 6px;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
-.comment__text {
+.comment__bubble {
+  background: #f3f4f6;
+  border-radius: 12px;
+
+  width: 92%;
+  max-width: var(--field-max);
+  margin-right: calc(var(--send-size) + var(--send-gap));
+
+  min-height: 120px;
+  padding: 26px 18px;
+  line-height: 1.6;
+
   color: #374151;
+  box-sizing: border-box;
 }
 
+/* --- Formulaire --- */
 .comment-form {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--field-max)) minmax(0, 1fr);
+  column-gap: var(--send-gap);
+  align-items: center;
 }
 
-.full { width: 100%; }
+.comment-form__field {
+  grid-column: 2;
+  width: 100%;
+  max-width: var(--field-max);
+  margin: 0;
+}
 
+.comment-form__field textarea[matInput] {
+  min-height: 96px;
+  max-height: 140px;
+  resize: none;
+}
+
+.comment-form__send {
+  grid-column: 3;
+
+  width: var(--send-size);
+  height: var(--send-size);
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  align-self: center;
+  justify-self: start;
+  margin-left: 10px;
+}
+
+.comment-form__send-icon {
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+
+/* --- Responsive --- */
 @media (max-width: 48em) {
+  .article__meta {
+    grid-template-columns: repeat(2, max-content);
+    gap: 14px 22px;
+  }
+
+  .detail-top__inner {
+    padding: 0 16px;
+    min-height: 40px;
+  }
+
+  .detail-top__back {
+    left: 8px;
+  }
+
+  /* ✅ sur mobile seulement : réserve l'espace flèche */
+  .detail-top__title {
+    padding-left: 56px;
+  }
+
   .comment {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .comment__user {
+    text-align: right;
+    margin-left: 0;
+    padding-top: 0;
+  }
+
+  .comment__bubble {
+    margin-right: 0;
+    max-width: 100%;
+    min-height: 110px;
+    width: 100%;
   }
 
   .comment-form {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr auto;
+    column-gap: 10px;
+  }
+
+  .comment-form__field {
+    grid-column: 1;
+    max-width: none;
+  }
+
+  .comment-form__send {
+    grid-column: 2;
+    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    margin-left: 0;
+  }
+
+  .comment-form__send-icon {
+    width: 44px;
+    height: 44px;
   }
 }

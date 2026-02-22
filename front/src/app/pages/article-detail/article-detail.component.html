@@ -1,49 +1,79 @@
 <app-header></app-header>
 
-<main class="container page">
-  <div class="detail-top">
-    <a mat-icon-button routerLink="/articles" aria-label="Retour">
-      <mat-icon>arrow_back</mat-icon>
-    </a>
+<!-- ✅ Header du détail en full width (hors container) -->
+<div class="detail-top detail-top--full">
+  <!-- ✅ Flèche à gauche de l'écran -->
+  <a
+    mat-icon-button
+    routerLink="/articles"
+    aria-label="Retour"
+    class="detail-top__back"
+  >
+    <mat-icon>west</mat-icon>
+  </a>
+
+  <!-- ✅ Titre aligné avec le contenu de la card -->
+  <div class="detail-top__inner">
     <h1 class="detail-top__title">Titre de l’article sélectionné</h1>
   </div>
+</div>
 
+<!-- ✅ classe ajoutée pour override local du padding .page -->
+<main class="container page page--article-detail">
   <mat-card class="article">
     <mat-card-content>
+      <!-- ✅ Meta : uniquement les valeurs -->
       <div class="article__meta">
-        <div><span>Date</span> <strong>01/01/2026</strong></div>
-        <div><span>Auteur</span> <strong>Auteur</strong></div>
-        <div><span>Thème</span> <strong>Thème</strong></div>
+        <div class="meta-item">
+          <strong>01/01/2026</strong>
+        </div>
+        <div class="meta-item">
+          <strong>Auteur</strong>
+        </div>
+        <div class="meta-item">
+          <strong>Thème</strong>
+        </div>
       </div>
 
       <p class="article__content">
-        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        Content: lorem ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the
       </p>
 
-      <mat-divider></mat-divider>
+      <mat-divider class="article__divider"></mat-divider>
 
       <h2 class="article__h2">Commentaires</h2>
 
       <div class="comments">
-        <mat-card class="comment" appearance="outlined">
-          <div class="comment__user">username</div>
-          <div class="comment__text">contenu du commentaire</div>
-        </mat-card>
+        <div class="comment">
+          <div class="comment__user">usernameusernameusername</div>
+          <div class="comment__bubble">
+            Content: lorem ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum has been the industry's standard
+            dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled...
+          </div>
+        </div>
 
-        <mat-card class="comment" appearance="outlined">
+        <div class="comment">
           <div class="comment__user">username</div>
-          <div class="comment__text">contenu du commentaire</div>
-        </mat-card>
+          <div class="comment__bubble">contenu du commentaire</div>
+        </div>
       </div>
 
       <div class="comment-form">
-        <mat-form-field appearance="outline" class="full">
+        <mat-form-field appearance="outline" class="comment-form__field">
           <mat-label>Écrivez ici votre commentaire</mat-label>
           <textarea matInput rows="4"></textarea>
         </mat-form-field>
 
-        <button mat-fab color="primary" type="button" aria-label="Envoyer">
-          <mat-icon>send</mat-icon>
+        <button
+          mat-icon-button
+          class="comment-form__send"
+          type="button"
+          aria-label="Envoyer"
+        >
+          <img class="comment-form__send-icon" src="assets/icon_send.png" alt="" />
         </button>
       </div>
     </mat-card-content>
