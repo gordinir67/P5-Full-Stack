@@ -13,10 +13,10 @@
     <span aria-hidden="true"></span>
   </div>
 
-  <mat-card class="auth-card">
-    <mat-card-content>
+  <section class="auth-card">
+    <div class="auth-card__content">
       <form class="auth-form" action="#" method="post">
-        <!-- Champ 1 -->
+
         <div class="field">
           <label class="field-label" for="register-username">Nom d’utilisateur</label>
           <mat-form-field appearance="outline" class="full">
@@ -24,13 +24,12 @@
               matInput
               id="register-username"
               type="text"
-            
+
               autocomplete="username"
             />
           </mat-form-field>
         </div>
 
-        <!-- Champ 2 -->
         <div class="field">
           <label class="field-label" for="register-email">Adresse e-mail</label>
           <mat-form-field appearance="outline" class="full">
@@ -44,7 +43,6 @@
           </mat-form-field>
         </div>
 
-        <!-- Champ 3 -->
         <div class="field">
           <label class="field-label" for="register-password">Mot de passe</label>
           <mat-form-field appearance="outline" class="full">
@@ -63,6 +61,6 @@
         </div>
 
       </form>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </section>
 </main>

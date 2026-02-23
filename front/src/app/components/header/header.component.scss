@@ -1,5 +1,4 @@
-/* Header layout */
-
+/* Header collant : il reste visible en haut de l’écran lors du scroll. */
 .app-toolbar {
   position: sticky;
   top: 0;
@@ -9,14 +8,6 @@
   min-height: 6rem;
   padding: 0 1rem;
   border-bottom: 1px solid var(--header-border);
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: inherit;
 }
 
 .logo {
@@ -33,32 +24,24 @@
 }
 
 .nav--mobile {
-  display: none; /* hamburger caché par défaut (desktop) */
+  display: none;
 }
 
-/* Responsive switch */
-/* Responsive switch (FORCÉ) */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .nav--desktop { display: none !important; }
   .nav--mobile  { display: inline-flex !important; }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 48.0625rem) {
   .nav--desktop { display: inline-flex !important; }
-  .nav--mobile  { display: none !important; } /* ✅ burger caché sur desktop */
+  .nav--mobile  { display: none !important; }
 }
 
-/* ----------------------------- */
-/* ACTIF (Desktop) => #6C5CCF */
-/* ----------------------------- */
 .nav--desktop .is-active {
   color: #6C5CCF !important;
   --mdc-text-button-label-text-color: #6C5CCF;
 }
 
-/* ----------------------------- */
-/* Profil => image (desktop + mobile drawer) */
-/* ----------------------------- */
 .profile-icon {
   height: 3.5rem;
   width: 4.5rem;
@@ -66,13 +49,11 @@
   display: block;
 }
 
-/* évite que le bouton "Profil" paraisse trop large (desktop) */
 .profile-btn {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-
-/* accessibilité : texte caché */
+/* Texte uniquement pour les lecteurs d’écran (utile pour l’accessibilité). */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -85,30 +66,21 @@
   border: 0;
 }
 
-/* ----------------------------- */
-/* DÉCONNEXION (Desktop) => #A40F0F */
-/* ----------------------------- */
 .logout-btn {
   color: #A40F0F !important;
   --mdc-text-button-label-text-color: #A40F0F;
 }
-
-/* ===================================================== */
-/* DRAWER MOBILE (CSS only) */
-/* 60% width, 100% height, backdrop grisé, éléments à droite */
-/* ===================================================== */
-
-/* checkbox caché */
+/* Le menu mobile est piloté par une checkbox cachée.
+   Quand elle est cochée, on affiche le fond (backdrop) + on fait glisser le drawer. */
 .mobile-nav-toggle {
   position: fixed;
   opacity: 0;
   pointer-events: none;
 }
 
-/* bouton hamburger (label) */
 .mobile-menu-btn {
-  width: 44px;
-  height: 44px;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -117,7 +89,6 @@
   user-select: none;
 }
 
-/* Backdrop */
 .mobile-drawer-backdrop {
   position: fixed;
   inset: 0;
@@ -128,13 +99,12 @@
   z-index: 999;
 }
 
-/* Drawer */
 .mobile-drawer {
   position: fixed;
   top: 0;
   right: 0;
   height: 100vh;
-  width: 60vw; /* ✅ demandé: 60% */
+  width: 60vw;
   background: #fff;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.18);
   transform: translateX(100%);
@@ -142,7 +112,6 @@
   z-index: 1000;
 }
 
-/* Contenu aligné à droite */
 .mobile-drawer__content {
   height: 100%;
   display: flex;
@@ -152,7 +121,6 @@
   gap: 0.5rem;
 }
 
-/* Items simples */
 .mobile-drawer__item {
   width: auto;
   display: inline-flex;
@@ -168,24 +136,20 @@
   font: inherit;
 }
 
-/* hover discret */
 .mobile-drawer__item:hover {
   opacity: 0.85;
 }
 
-/* Logout rouge (mobile) */
 .logout-menu-item {
   color: #A40F0F !important;
   font-weight: 600;
 }
 
-/* actif en violet (mobile) */
 .mobile-drawer .is-active {
   color: #6C5CCF !important;
   font-weight: 600;
 }
 
-/* Profil en bas à droite (mobile) */
 .mobile-drawer__profile {
   margin-top: auto;
   align-self: flex-end;
@@ -193,7 +157,6 @@
   cursor: pointer;
 }
 
-/* état ouvert */
 @media (max-width: 48em) {
   .mobile-nav-toggle:checked ~ .mobile-drawer-backdrop {
     opacity: 1;
@@ -205,7 +168,6 @@
   }
 }
 
-/* en desktop on cache drawer/backdrop/toggle */
 @media (min-width: 48.001em) {
   .mobile-drawer,
   .mobile-drawer-backdrop,

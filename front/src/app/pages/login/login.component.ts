@@ -1,8 +1,7 @@
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Component } from '@angular/core';
@@ -11,10 +10,9 @@ import { Component } from '@angular/core';
   selector: 'app-login',
   standalone: true,
   imports: [
-    RouterModule,
+    RouterLink,
     MatButtonModule,
     MatToolbarModule,
-    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule

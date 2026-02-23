@@ -1,8 +1,7 @@
 <app-header></app-header>
 
-<!-- ✅ Header du détail en full width (hors container) -->
 <div class="detail-top detail-top--full">
-  <!-- ✅ Flèche à gauche de l'écran -->
+
   <a
     mat-icon-button
     routerLink="/articles"
@@ -12,31 +11,31 @@
     <mat-icon>west</mat-icon>
   </a>
 
-  <!-- ✅ Titre aligné avec le contenu de la card -->
   <div class="detail-top__inner">
     <h1 class="detail-top__title">Titre de l’article sélectionné</h1>
   </div>
 </div>
 
-<!-- ✅ classe ajoutée pour override local du padding .page -->
 <main class="container page page--article-detail">
-  <mat-card class="article">
-    <mat-card-content>
-      <!-- ✅ Meta : uniquement les valeurs -->
+  <section class="article">
+    <div class="article__inner">
+
       <div class="article__meta">
         <div class="meta-item">
-          <strong>01/01/2026</strong>
+          <span>01/01/2026</span>
         </div>
         <div class="meta-item">
-          <strong>Auteur</strong>
+          <span>Auteur</span>
         </div>
         <div class="meta-item">
-          <strong>Thème</strong>
+          <span>Thème</span>
         </div>
       </div>
 
       <p class="article__content">
         Content: lorem ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the Content: lorem ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been theContent: lorem ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the
       </p>
 
@@ -76,6 +75,6 @@
           <img class="comment-form__send-icon" src="assets/icon_send.png" alt="" />
         </button>
       </div>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </section>
 </main>

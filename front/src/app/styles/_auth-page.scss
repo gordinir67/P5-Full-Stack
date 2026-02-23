@@ -1,0 +1,205 @@
+.auth-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  height: 6rem;
+  min-height: 6rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--header-border);
+}
+
+.auth-toolbar__brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.auth-toolbar__logo {
+  height: 6rem;
+  width: auto;
+}
+
+.page {
+  min-height: calc(100dvh - 6rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  flex: 0 0 auto;
+}
+
+.topbar__title {
+  font-weight: 400;
+}
+
+.auth-card {
+  width: min(30rem, 100%);
+  margin-inline: auto;
+  display: block;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
+}
+
+.auth-card__content {
+  display: block;
+  padding: 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Pages d’auth : on force une bordure neutre (noire) sur les champs.
+   Comme ça, login/register restent sobres et le reste de l’app garde la couleur principale. */
+.auth-form .mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: #111111;
+  --mdc-outlined-text-field-hover-outline-color: #111111;
+  --mdc-outlined-text-field-focus-outline-color: #111111;
+  --mdc-outlined-text-field-caret-color: #111111;
+}
+
+.auth-form .mat-mdc-form-field.mat-focused .mdc-floating-label {
+  color: #111111 !important;
+}
+
+.auth-form .mat-mdc-select-arrow {
+  color: #111111;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  margin: 0 0 0.4rem;
+  padding-left: 0.25rem;
+}
+
+.full {
+  width: 100%;
+}
+
+.field + .field {
+  margin-top: clamp(1.25rem, 5vh, 3.25rem);
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-form a[mat-button] {
+  margin-top: 0.75rem;
+  align-self: center;
+}
+
+@media (max-width: 48em) {
+  .auth-toolbar {
+    display: none;
+    border-bottom: 0;
+    height: 0;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .page {
+    min-height: 100dvh;
+  }
+
+  .auth-card {
+    width: min(26rem, 100%);
+  }
+
+  .auth-card__content {
+    padding-top: clamp(3.75rem, 4.2vh, 4.25rem);
+  }
+
+  .topbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    row-gap: 0.15rem;
+
+    /* Sur mobile (surtout iPhone), env(safe-area-inset-top) évite que le contenu passe sous l’encoche. */
+    padding: calc(env(safe-area-inset-top) + 0.6rem) 1rem 0.15rem;
+
+    --logo-w: clamp(13rem, 66.67vw, 18rem);
+    --logo-mt: clamp(1.1rem, 3.2vh, 2.1rem);
+
+    --logo-mb: clamp(0rem, 0.25vh, 0.35rem);
+
+    --title-mt: clamp(0.05rem, 0.35vh, 0.25rem);
+  }
+
+  .topbar a[mat-icon-button] {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .topbar span[aria-hidden="true"] {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .topbar::before {
+    content: "";
+    display: block;
+
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+
+    width: var(--logo-w);
+    aspect-ratio: 3 / 2;
+    height: auto;
+
+    margin-top: calc(-1 * var(--logo-mt));
+    margin-bottom: calc(-1 * var(--logo-mb));
+
+    background: url("/assets/logo_p6.png") center / contain no-repeat;
+  }
+
+  .topbar__title {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: center;
+
+    margin: 0;
+    text-align: center;
+
+    margin-top: calc(-1 * var(--title-mt));
+  }
+
+  .field + .field {
+    margin-top: clamp(1.25rem, 6vh, 3.75rem);
+  }
+}
+
+@media (max-width: 48em) and (max-height: 42rem) {
+  .topbar {
+    --logo-w: clamp(12rem, 62vw, 16rem);
+    --logo-mt: clamp(0.9rem, 3.4vh, 1.8rem);
+
+    --title-mt: clamp(0.05rem, 0.3vh, 0.2rem);
+  }
+
+  .field + .field {
+    margin-top: clamp(1rem, 4.5vh, 2.5rem);
+  }
+}

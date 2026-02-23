@@ -24,19 +24,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  column-gap: 4rem;   /* espace horizontal (desktop) */
-  row-gap: var(--space-3); /* si jamais ça passe en 2 lignes */
+  column-gap: 4rem;
+  row-gap: var(--space-3);
 
   max-width: 26rem;
 }
-/* ===== Bouton style "classique" ===== */
+
 .btn-classic {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   width: 100%;
-  min-height: 44px;
+  min-height: 2.75rem;
   padding: 0.55rem 1.2rem;
 
   background: #fff;
@@ -63,7 +63,6 @@
   outline-offset: 2px;
 }
 
-/* ===== Mobile ===== */
 @media (max-width: 48em) {
   .landing {
     gap: var(--space-4);
@@ -77,12 +76,11 @@
   .landing__actions {
     grid-template-columns: 1fr;
     max-width: 18rem;
-    gap: 3.5rem; /* espace entre les boutons sur mobile */
+    gap: 3.5rem;
   }
 
-  /* boutons plus gros sur mobile */
   .btn-classic {
-    min-height: 52px;
+    min-height: 3.25rem;
     padding: 0.9rem 1.1rem;
     font-size: 1.05rem;
     border-width: 2px;

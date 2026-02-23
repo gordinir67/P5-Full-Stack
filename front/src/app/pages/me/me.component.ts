@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-me',
   imports: [
-    HeaderComponent,
-    MatButtonModule,
-    MatCardModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatInputModule
+      HeaderComponent,
+      MatDividerModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatCardModule,
   ],
   templateUrl: './me.component.html',
   styleUrl: './me.component.scss'
@@ -22,3 +20,4 @@ import { HeaderComponent } from '../../components/header/header.component';
 export class MeComponent {
 
 }
+
