@@ -11,7 +11,6 @@
   <span class="spacer"></span>
 
   <nav class="nav nav--desktop" aria-label="Navigation principale">
-
     <button mat-button type="button" class="logout-btn">
       Se déconnecter
     </button>
@@ -70,14 +69,13 @@
 
 <aside class="mobile-drawer" aria-label="Menu mobile">
   <div class="mobile-drawer__content">
-
     <button type="button" class="mobile-drawer__item logout-menu-item">
       Se déconnecter
     </button>
 
     <label
       for="mobileNavToggle"
-      class="mobile-drawer__item"
+      class="mobile-drawer__item mobile-drawer__link"
       routerLink="/articles"
       routerLinkActive="is-active"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -89,7 +87,7 @@
 
     <label
       for="mobileNavToggle"
-      class="mobile-drawer__item"
+      class="mobile-drawer__item mobile-drawer__link"
       routerLink="/themes"
       routerLinkActive="is-active"
       [routerLinkActiveOptions]="{ exact: true }"
@@ -116,7 +114,6 @@
         [src]="rlaMeMobile.isActive ? 'assets/profile-icon-me.png' : 'assets/profile-icon.png'"
         alt="Profil"
       />
-      <span class="sr-only">Profil</span>
     </label>
   </div>
 </aside>
