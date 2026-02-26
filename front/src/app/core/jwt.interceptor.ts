@@ -1,6 +1,5 @@
 import {
   HttpErrorResponse,
-  HttpEvent,
   HttpHandlerFn,
   HttpInterceptorFn,
   HttpRequest,
@@ -18,9 +17,15 @@ export const jwtInterceptor: HttpInterceptorFn = (
   const router = inject(Router);
   const token = tokenSvc.getToken();
 
-  const authReq = token
-    ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
-    : req;
+  let authReq = req;
+
+  if (token) {
+    authReq = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 
   return next(authReq).pipe(
     catchError((err: unknown) => {
@@ -29,6 +34,7 @@ export const jwtInterceptor: HttpInterceptorFn = (
         tokenSvc.clearToken();
         router.navigate(['/login']);
       }
+
       return throwError(() => err);
     })
   );

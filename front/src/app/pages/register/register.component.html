@@ -15,8 +15,9 @@
 
   <section class="auth-card">
     <div class="auth-card__content">
-      <form class="auth-form" action="#" method="post">
+      <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
 
+        <!-- USERNAME -->
         <div class="field">
           <label class="field-label" for="register-username">Nom d’utilisateur</label>
           <mat-form-field appearance="outline" class="full">
@@ -24,12 +25,17 @@
               matInput
               id="register-username"
               type="text"
-
+              formControlName="name"
               autocomplete="username"
             />
+
+            @if (form.controls.name.touched && form.controls.name.invalid) {
+              <mat-error>Nom requis (min 2 caractères).</mat-error>
+            }
           </mat-form-field>
         </div>
 
+        <!-- EMAIL -->
         <div class="field">
           <label class="field-label" for="register-email">Adresse e-mail</label>
           <mat-form-field appearance="outline" class="full">
@@ -37,12 +43,17 @@
               matInput
               id="register-email"
               type="email"
-
+              formControlName="email"
               autocomplete="email"
             />
+
+            @if (form.controls.email.touched && form.controls.email.invalid) {
+              <mat-error>Veuillez saisir une adresse e-mail valide.</mat-error>
+            }
           </mat-form-field>
         </div>
 
+        <!-- PASSWORD -->
         <div class="field">
           <label class="field-label" for="register-password">Mot de passe</label>
           <mat-form-field appearance="outline" class="full">
@@ -50,16 +61,25 @@
               matInput
               id="register-password"
               type="password"
-
+              formControlName="password"
               autocomplete="new-password"
             />
+
+            @if (form.controls.password.touched && form.controls.password.invalid) {
+              <mat-error>Mot de passe requis (min 8 caractères).</mat-error>
+            }
           </mat-form-field>
         </div>
 
         <div class="actions">
-          <button class="mdd-button" type="button">S’inscrire</button>
+          <button class="mdd-button" type="submit" [disabled]="form.invalid || isSubmitting">
+            S’inscrire
+          </button>
         </div>
 
+        @if (error) {
+          <p class="auth-error">{{ error }}</p>
+        }
       </form>
     </div>
   </section>
