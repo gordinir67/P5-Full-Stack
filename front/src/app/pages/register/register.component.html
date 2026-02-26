@@ -66,7 +66,7 @@
             />
 
             @if (form.controls.password.touched && form.controls.password.invalid) {
-              <mat-error>Mot de passe requis (min 8 caractères).</mat-error>
+              <mat-error>8 caractères min., 1 majuscule, 1 chiffre, 1 caractère spécial.</mat-error>
             }
           </mat-form-field>
         </div>
@@ -78,7 +78,7 @@
         </div>
 
         @if (error) {
-          <p class="auth-error">{{ error }}</p>
+          <mat-error>{{ error }}</mat-error>
         }
       </form>
     </div>
