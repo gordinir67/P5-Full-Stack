@@ -7,7 +7,6 @@ const STORAGE_KEY = 'mdd_token';
 export class TokenService {
   private readonly subject = new BehaviorSubject<string | null>(this.read());
 
-  /** Emits current token value (null if logged out). */
   readonly token$ = this.subject.asObservable();
 
   getToken(): string | null {
