@@ -7,15 +7,17 @@ import { ArticleCreateComponent } from './pages/article-create/article-create.co
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 import { MeComponent } from './pages/me/me.component';
 import { ThemesComponent } from './pages/themes/themes.component';
+import { authGuard } from './guards/auth.guard';
+import { guestGuard } from './guards/guest.guard';
 
 export const routes: Routes = [
-      { path: '', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },  
-      { path: 'articles', component: ArticlesComponent },   
-      { path: 'articles/create', component: ArticleCreateComponent },
-      { path: 'articles/:id', component: ArticleDetailComponent },
-      { path: 'themes', component: ThemesComponent },        
-      { path: 'me', component: MeComponent },
+      { path: '', component: HomeComponent, canActivate: [guestGuard] },
+      { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
+      { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },  
+      { path: 'articles', component: ArticlesComponent, canActivate: [authGuard] },   
+      { path: 'articles/create', component: ArticleCreateComponent, canActivate: [authGuard] },
+      { path: 'articles/:id', component: ArticleDetailComponent, canActivate: [authGuard] },
+      { path: 'themes', component: ThemesComponent, canActivate: [authGuard] },        
+      { path: 'me', component: MeComponent, canActivate: [authGuard] },
       { path: '**', redirectTo: '' },      
 ];

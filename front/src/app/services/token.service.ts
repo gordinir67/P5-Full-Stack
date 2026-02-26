@@ -10,7 +10,7 @@ export class TokenService {
   /** Emits current token value (null if logged out). */
   readonly token$ = this.subject.asObservable();
 
-  gettoken(): string | null {
+  getToken(): string | null {
     return this.subject.value;
   }
 

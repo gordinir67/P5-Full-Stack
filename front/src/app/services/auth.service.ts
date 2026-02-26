@@ -28,7 +28,13 @@ export class AuthService {
     this.tokenSvc.clearToken();
   }
 
-  isLoggedIn(): boolean {
-    return !!this.tokenSvc.gettoken();
+isLoggedIn(): boolean {
+  const token = this.tokenSvc.getToken();
+
+  if (token) {
+    return true;
+  } else {
+    return false;
   }
+}
 }

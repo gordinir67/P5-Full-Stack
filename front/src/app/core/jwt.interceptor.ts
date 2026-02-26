@@ -16,7 +16,7 @@ export const jwtInterceptor: HttpInterceptorFn = (
 ) => {
   const tokenSvc = inject(TokenService);
   const router = inject(Router);
-  const token = tokenSvc.gettoken();
+  const token = tokenSvc.getToken();
 
   const authReq = token
     ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
