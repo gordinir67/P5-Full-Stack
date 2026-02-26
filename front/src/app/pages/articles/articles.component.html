@@ -20,29 +20,36 @@
   </div>
 
   <section class="grid" aria-label="Liste des articles">
-    <mat-card
-      class="article-card article-card--clickable"
-      routerLink="/articles/1"
-      matRipple
-      role="link"
-      tabindex="0"
-      aria-label="Ouvrir l’article 1"
-    >
-      <mat-card-title>Titre de l’article</mat-card-title>
-      <mat-card-subtitle class="meta">
-        <span class="date">01/01/2026</span>
-        <span class="author">Auteur</span>
-      </mat-card-subtitle>
+    @if (isLoading) {
+      <p>Chargement…</p>
+    }
 
-      <p>
-        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled
-      </p>
-    </mat-card>
+    @if (error) {
+      <p>{{ error }}</p>
+    }
+
+    @if (!isLoading && !error && articles.length === 0) {
+      <p>Aucun article pour le moment.</p>
+    }
+
+    @for (article of articles; track article.id) {
+      <mat-card
+        class="article-card article-card--clickable"
+        [routerLink]="['/articles', article.id]"
+        matRipple
+        role="link"
+        tabindex="0"
+        [attr.aria-label]="'Ouvrir l\u2019article ' + article.id"
+      >
+        <mat-card-title>{{ article.title }}</mat-card-title>
+        <mat-card-subtitle class="meta">
+          <span class="date">{{ article.createdAt | date:'dd/MM/yyyy' }}</span>
+          <span class="author">{{ article.user?.name }}</span>
+          <span class="theme">{{ article.theme?.title }}</span>
+        </mat-card-subtitle>
+
+        <p>{{ article.description }}</p>
+      </mat-card>
+    }
   </section>
 </main>
