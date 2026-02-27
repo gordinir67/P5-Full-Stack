@@ -2,40 +2,31 @@
 
 <main class="container page">
   <section class="grid" aria-label="Liste des themes">
-    <mat-card class="themes-card">
 
-      <mat-card-title>Titre du theme</mat-card-title>
-      <p>
-        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled
-      </p>
+    @if (error) {
+      <p>{{ error }}</p>
+    }
 
-                <div class="actions">
-          <button class="mdd-button" type="button">S’abonner</button>
+    @if (!isLoading && !error && themes.length === 0) {
+      <p>Aucun thème.</p>
+    }
+
+    @for (theme of themes; track theme.id) {
+      <mat-card class="themes-card">
+        <mat-card-title>{{ theme.title }}</mat-card-title>
+        <p>{{ theme.description }}</p>
+
+        <div class="actions">
+          <button
+            class="mdd-button"
+            type="button"
+            [disabled]="theme.subscribed || isLoading"
+            (click)="subscribe(theme)"
+          >
+            {{ theme.subscribed ? 'Déjà abonné' : 'S’abonner' }}
+          </button>
         </div>
-
-    </mat-card>
-
-        <mat-card class="themes-card">
-
-      <mat-card-title>Titre du theme</mat-card-title>
-      <p>
-        Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled
-      </p>
-                <div class="actions">
-          <button class="mdd-button" type="button" disabled>Déja abonné</button>
-        </div>
-    </mat-card>
+      </mat-card>
+    }
   </section>
 </main>

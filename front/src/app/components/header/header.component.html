@@ -11,7 +11,7 @@
   <span class="spacer"></span>
 
   <nav class="nav nav--desktop" aria-label="Navigation principale">
-    <button mat-button type="button" class="logout-btn">
+    <button mat-button type="button" class="logout-btn" (click)="logout()">
       Se déconnecter
     </button>
 
@@ -69,7 +69,7 @@
 
 <aside class="mobile-drawer" aria-label="Menu mobile">
   <div class="mobile-drawer__content">
-    <button type="button" class="mobile-drawer__item logout-menu-item">
+    <button type="button" class="mobile-drawer__item logout-menu-item" (click)="logout()">
       Se déconnecter
     </button>
 
