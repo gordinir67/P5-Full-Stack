@@ -17,29 +17,51 @@
   </div>
 
   <section class="create">
-    <form class="create-form" action="#" method="post">
+    <form class="create-form" [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- THEME -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Sélectionner un thème</mat-label>
-        <mat-select>
-          <mat-option value="Thème 1">Thème 1</mat-option>
-          <mat-option value="Thème 2">Thème 2</mat-option>
-          <mat-option value="Thème 3">Thème 3</mat-option>
+        <mat-select formControlName="themeId">
+          @for (t of themes; track t.id) {
+            <mat-option [value]="t.id">{{ t.title }}</mat-option>
+          }
         </mat-select>
+
+        @if (form.controls.themeId.touched && form.controls.themeId.invalid) {
+          <mat-error>Thème requis.</mat-error>
+        }
       </mat-form-field>
 
+      <!-- TITLE -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Titre de l’article</mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="title" />
+
+        @if (form.controls.title.touched && form.controls.title.invalid) {
+          <mat-error>Titre requis.</mat-error>
+        }
       </mat-form-field>
 
+      <!-- DESCRIPTION -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Contenu de l’article</mat-label>
-        <textarea matInput rows="9"></textarea>
+        <textarea matInput rows="9" formControlName="description"></textarea>
+
+        @if (form.controls.description.touched && form.controls.description.invalid) {
+          <mat-error>Contenu requis.</mat-error>
+        }
       </mat-form-field>
 
       <div class="actions">
-        <button class="mdd-button" type="button">Créer</button>
+        <button class="mdd-button" type="submit" [disabled]="form.invalid || isSubmitting">
+          Créer
+        </button>
       </div>
+
+      @if (error) {
+        <mat-error>{{ error }}</mat-error>
+      }
     </form>
   </section>
 </main>
