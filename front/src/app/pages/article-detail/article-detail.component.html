@@ -1,7 +1,6 @@
 <app-header></app-header>
 
 <div class="detail-top detail-top--full">
-
   <a
     mat-icon-button
     routerLink="/articles"
@@ -12,7 +11,7 @@
   </a>
 
   <div class="detail-top__inner">
-    <h1 class="detail-top__title">Titre de l’article sélectionné</h1>
+    <h1 class="detail-top__title">{{ article?.title || 'Article' }}</h1>
   </div>
 </div>
 
@@ -20,54 +19,70 @@
   <section class="article">
     <div class="article__inner">
 
-      <div class="article__meta">
-        <div class="meta-item">
-          <span>01/01/2026</span>
-        </div>
-        <div class="meta-item">
-          <span>Auteur</span>
-        </div>
-        <div class="meta-item">
-          <span>Thème</span>
-        </div>
-      </div>
+      @if (isLoading) {
+        <p>Chargement…</p>
+      }
 
-      <p class="article__content">
-        Content: lorem ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the Content: lorem ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been theContent: lorem ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the
-      </p>
+      @if (error) {
+        <p>{{ error }}</p>
+      }
 
-      <mat-divider class="article__divider"></mat-divider>
-
-      <h2 class="article__h2">Commentaires</h2>
-
-      <div class="comments">
-        <div class="comment">
-          <div class="comment__user">username</div>
-          <div class="comment__bubble">
-          contenu du commentaire
+      @if (!isLoading && article) {
+        <div class="article__meta">
+          <div class="meta-item">
+            <span>{{ article.createdAt | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="meta-item">
+            <span>{{ article.user?.name }}</span>
+          </div>
+          <div class="meta-item">
+            <span>{{ article.theme?.title }}</span>
           </div>
         </div>
 
-      </div>
+        <p class="article__content">
+          {{ article.description }}
+        </p>
 
-      <div class="comment-form">
-        <mat-form-field appearance="outline" class="comment-form__field">
-          <mat-label>Écrivez ici votre commentaire</mat-label>
-          <textarea matInput rows="4"></textarea>
-        </mat-form-field>
+        <mat-divider class="article__divider"></mat-divider>
 
-        <button
-          mat-icon-button
-          class="comment-form__send"
-          type="button"
-          aria-label="Envoyer"
-        >
-          <img class="comment-form__send-icon" src="assets/icon_send.png" alt="" />
-        </button>
-      </div>
+        <h2 class="article__h2">Commentaires</h2>
+
+        <div class="comments">
+          @if ((article.comments?.length ?? 0) === 0) {
+            <p>Aucun commentaire.</p>
+          }
+
+          @for (c of (article.comments ?? []); track c.id) {
+            <div class="comment">
+              <div class="comment__user">{{ c.user?.name }}</div>
+              <div class="comment__bubble">{{ c.description }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="comment-form" [formGroup]="commentForm">
+          <mat-form-field appearance="outline" class="comment-form__field">
+            <mat-label>Écrivez ici votre commentaire</mat-label>
+            <textarea matInput rows="4" formControlName="description"></textarea>
+
+            @if (commentForm.controls.description.touched && commentForm.controls.description.invalid) {
+              <mat-error>Commentaire requis.</mat-error>
+            }
+          </mat-form-field>
+
+          <button
+            mat-icon-button
+            class="comment-form__send"
+            type="button"
+            aria-label="Envoyer"
+            (click)="sendComment()"
+            [disabled]="commentForm.invalid || isSending"
+          >
+            <img class="comment-form__send-icon" src="assets/icon_send.png" alt="" />
+          </button>
+        </div>
+      }
     </div>
   </section>
 </main>
