@@ -15,6 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+/**
+ * Service métier chargé de l'inscription et de la connexion des utilisateurs.
+ */
 @Service
 public class AuthService {
 
@@ -23,6 +26,14 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
+    /**
+     * Construit le service d'authentification.
+     *
+     * @param userRepository dépôt des utilisateurs
+     * @param passwordEncoder encodeur de mots de passe
+     * @param authenticationManager gestionnaire d'authentification Spring Security
+     * @param jwtService service de génération des jetons JWT
+     */
     public AuthService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        AuthenticationManager authenticationManager,
@@ -33,6 +44,12 @@ public class AuthService {
         this.jwtService = jwtService;
     }
 
+    /**
+     * Inscrit un nouvel utilisateur puis retourne un jeton JWT.
+     *
+     * @param request données d'inscription
+     * @return réponse d'authentification contenant le jeton
+     */
     public AuthResponse register(RegisterRequest request) {
         String email = request.getEmail().trim().toLowerCase();
 
@@ -52,6 +69,12 @@ public class AuthService {
         return new AuthResponse(token);
     }
 
+    /**
+     * Authentifie un utilisateur puis retourne un jeton JWT.
+     *
+     * @param request données de connexion
+     * @return réponse d'authentification contenant le jeton
+     */
     public AuthResponse login(LoginRequest request) {
         String email = request.getEmail().trim().toLowerCase();
 

@@ -6,6 +6,9 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Configuration OpenAPI exposant la documentation Swagger et le schéma de sécurité JWT.
+ */
 @Configuration
 @OpenAPIDefinition(
         info = @Info(title = "MDD API", version = "v1")

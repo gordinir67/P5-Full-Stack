@@ -10,6 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+/**
+ * Service métier de gestion du profil utilisateur.
+ */
 @Service
 public class UserService {
 
@@ -17,6 +20,13 @@ public class UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Construit le service utilisateur.
+     *
+     * @param userRepository dépôt des utilisateurs
+     * @param userMapper mapper des utilisateurs
+     * @param passwordEncoder encodeur de mots de passe
+     */
     public UserService(UserRepository userRepository,
                        UserMapper userMapper,
                        PasswordEncoder passwordEncoder) {
@@ -25,6 +35,12 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * Retourne le profil de l'utilisateur connecté.
+     *
+     * @param userId identifiant de l'utilisateur
+     * @return données du profil
+     */
     public UserDto getMe(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));
@@ -32,6 +48,13 @@ public class UserService {
         return userMapper.toDto(user);
     }
 
+    /**
+     * Met à jour le profil de l'utilisateur connecté.
+     *
+     * @param userId identifiant de l'utilisateur
+     * @param request données de mise à jour
+     * @return profil mis à jour
+     */
     public UserDto updateMe(Long userId, UpdateUserRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utilisateur introuvable"));

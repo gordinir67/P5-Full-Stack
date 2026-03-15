@@ -23,6 +23,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+/**
+ * Service métier de gestion des articles et des commentaires.
+ */
 @Service
 public class ArticleService {
 
@@ -33,6 +36,16 @@ public class ArticleService {
     private final ArticleMapper articleMapper;
     private final CommentMapper commentMapper;
 
+    /**
+     * Construit le service des articles.
+     *
+     * @param articleRepository dépôt des articles
+     * @param commentRepository dépôt des commentaires
+     * @param userRepository dépôt des utilisateurs
+     * @param themeRepository dépôt des thèmes
+     * @param articleMapper mapper des articles
+     * @param commentMapper mapper des commentaires
+     */
     public ArticleService(ArticleRepository articleRepository,
                           CommentRepository commentRepository,
                           UserRepository userRepository,
@@ -47,6 +60,12 @@ public class ArticleService {
         this.commentMapper = commentMapper;
     }
 
+    /**
+     * Liste les articles triés par date de création.
+     *
+     * @param sortDirection sens du tri ({@code asc} ou {@code desc})
+     * @return liste simplifiée des articles
+     */
     @Transactional(readOnly = true)
     public List<ArticleLightDto> listArticles(String sortDirection) {
         Sort.Direction dir = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
@@ -56,6 +75,12 @@ public class ArticleService {
                 .toList();
     }
 
+    /**
+     * Retourne le détail d'un article avec ses commentaires.
+     *
+     * @param articleId identifiant de l'article
+     * @return article détaillé
+     */
     @Transactional(readOnly = true)
     public ArticleDto getArticle(Integer articleId) {
         Article article = articleRepository.findById(articleId)
@@ -69,6 +94,13 @@ public class ArticleService {
         return articleMapper.toDto(article, comments);
     }
 
+    /**
+     * Crée un nouvel article pour un utilisateur donné.
+     *
+     * @param userId identifiant de l'utilisateur connecté
+     * @param request données de création de l'article
+     * @return article créé
+     */
     @Transactional
     public ArticleDto createArticle(Long userId, CreateArticleRequest request) {
         User user = userRepository.findById(userId)
@@ -89,6 +121,14 @@ public class ArticleService {
         return articleMapper.toDto(saved, List.of());
     }
 
+    /**
+     * Ajoute un commentaire sur un article existant.
+     *
+     * @param userId identifiant de l'utilisateur connecté
+     * @param articleId identifiant de l'article ciblé
+     * @param request données du commentaire
+     * @return commentaire créé
+     */
     @Transactional
     public CommentDto addComment(Long userId, Integer articleId, CreateCommentRequest request) {
         User user = userRepository.findById(userId)

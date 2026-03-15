@@ -16,6 +16,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+/**
+ * Service métier de gestion des thèmes et des abonnements utilisateur.
+ */
 @Service
 public class ThemeService {
 
@@ -25,6 +28,15 @@ public class ThemeService {
     private final ThemeMapper themeMapper;
     private final SubscriptionMapper subscriptionMapper;
 
+    /**
+     * Construit le service des thèmes.
+     *
+     * @param themeRepository dépôt des thèmes
+     * @param subscriptionRepository dépôt des abonnements
+     * @param userRepository dépôt des utilisateurs
+     * @param themeMapper mapper des thèmes
+     * @param subscriptionMapper mapper des abonnements
+     */
     public ThemeService(ThemeRepository themeRepository,
                         SubscriptionRepository subscriptionRepository,
                         UserRepository userRepository,
@@ -37,15 +49,27 @@ public class ThemeService {
         this.subscriptionMapper = subscriptionMapper;
     }
 
+    /**
+     * Retourne la liste des thèmes avec l'état d'abonnement d'un utilisateur.
+     *
+     * @param userId identifiant de l'utilisateur
+     * @return liste des thèmes disponibles
+     */
     public List<ThemeDto> listThemes(Long userId) {
         return themeRepository.findAll().stream()
                 .map(t -> themeMapper.toDto(t, subscriptionRepository.existsByUserIdAndThemeId(userId, t.getId())))
                 .toList();
     }
 
+    /**
+     * Abonne un utilisateur à un thème.
+     *
+     * @param userId identifiant de l'utilisateur
+     * @param themeId identifiant du thème
+     */
     public void subscribe(Long userId, Integer themeId) {
         if (subscriptionRepository.existsByUserIdAndThemeId(userId, themeId)) {
-            return; // idempotent
+            return;
         }
 
         Theme theme = themeRepository.findById(themeId)
@@ -62,11 +86,23 @@ public class ThemeService {
         subscriptionRepository.save(subscription);
     }
 
+    /**
+     * Désabonne un utilisateur d'un thème.
+     *
+     * @param userId identifiant de l'utilisateur
+     * @param themeId identifiant du thème
+     */
     public void unsubscribe(Long userId, Integer themeId) {
         subscriptionRepository.findByUserIdAndThemeId(userId, themeId)
                 .ifPresent(subscriptionRepository::delete);
     }
 
+    /**
+     * Retourne les abonnements de l'utilisateur.
+     *
+     * @param userId identifiant de l'utilisateur
+     * @return liste des abonnements
+     */
     public List<SubscriptionDto> listMySubscriptions(Long userId) {
         return subscriptionRepository.findAllByUserId(userId).stream()
                 .map(subscriptionMapper::toDto)
