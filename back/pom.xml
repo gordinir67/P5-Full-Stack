@@ -23,6 +23,7 @@
         <lombok.version>1.18.32</lombok.version>
         <jjwt.version>0.11.5</jjwt.version>
         <maven.javadoc.plugin.version>3.10.1</maven.javadoc.plugin.version>
+        <sonar.maven.plugin.version>5.5.0.6356</sonar.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -62,6 +63,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -141,10 +143,12 @@
                 <version>0.8.12</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
@@ -152,6 +156,7 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+
                     <execution>
                         <id>check</id>
                         <phase>verify</phase>
@@ -194,6 +199,12 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar.maven.plugin.version}</version>
             </plugin>
 
             <plugin>
